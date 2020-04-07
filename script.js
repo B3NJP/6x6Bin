@@ -46,4 +46,37 @@ function initialNumbers() {
   document.getElementById('F5').value = 1;
 }
 
+function Solve(tGrid) {
+  tGridStr = "";
+  for (var i in tGrid) {
+    for (var j in tGrid[i]) {
+      switch (tGrid[i][j].value) {
+        case "":
+          tGridStr += "2";
+          break;
+        default:
+          tGridStr += tGrid[i][j].value;
+
+      }
+    }
+  }
+  console.log(tGridStr);
+  tLen = (tGridStr.match(/2/g) || []).length;
+  console.log(tLen)
+  tStr = ""
+  for (var i=0; i<Math.pow(2,tLen); i++) {
+    tStr = tGridStr;
+    tAns = i.toString(2);
+    for (var j=0; j<tLen; j++) {
+      tStr = tStr.replace("2", tAns[j] || "0");
+    }
+    if (tAns == "1111111111111111111") {
+      console.log(tAns)
+    }
+  }
+
+}
+
 initialNumbers();
+
+Solve(grid);
