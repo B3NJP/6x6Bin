@@ -59,6 +59,15 @@ function TestBin(strIN) {
   }
   console.log(rows);
   console.log(cols);
+  for (var i in rows) {
+    if ((rows[i].match(/0/g) || []).length != 3) {
+      return false;
+    }
+
+    if ((cols[i].match(/0/g) || []).length != 3) {
+      return false;
+    }
+  }
 }
 
 function Solve(tGrid) {
