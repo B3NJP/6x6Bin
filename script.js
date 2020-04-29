@@ -46,6 +46,21 @@ function initialNumbers() {
   document.getElementById('F5').value = 1;
 }
 
+function TestBin(strIN) {
+  var arrIN = strIN.split("");
+  var rows = [];
+  var cols = [];
+  for (var i=0;i<6;i++) {cols.push([])}
+  for (var i=0;i<6;i++) {
+    rows.push([arrIN.slice(i*6,i*6+6)]);
+    for (var j=0;j<6;j++) {
+      cols[j].push(arrIN[j*6+i]);
+    }
+  }
+  console.log(rows);
+  console.log(cols);
+}
+
 function Solve(tGrid) {
   tGridStr = "";
   for (var i in tGrid) {
@@ -71,7 +86,9 @@ function Solve(tGrid) {
       tStr = tStr.replace("2", tAns[j] || "0");
     }
     if (tAns == "1111111111111111111") {
-      console.log(tAns)
+      console.log(tAns);
+      console.log(tStr);
+      TestBin(tStr);
     }
   }
 
