@@ -179,29 +179,15 @@ function fillTriple(tStr) {
   for (var i in tStr) {
     tArr.push(tStr[i]);
   }
-  var x = tStr.search("00");
-  // console.log(tStr);
-  // console.log(x);
+  var x = tStr.search("0 0");
   if (x >= 0) {
-    if (x > 0) {
-      tArr[x-1] = "1";
-    }
-    if (x < 4) {
-      tArr[x+2] = "1";
-    }
+    tArr[x+1] = "1";
   }
 
-  x = tStr.search("11");
+  x = tStr.search("1 1");
   if (x >= 0) {
-    if (x > 0) {
-      tArr[x-1] = "0";
-    }
-    if (x < 4) {
-      tArr[x+2] = "0";
-    }
+    tArr[x+1] = "0";
   }
-  // console.log(tStr);
-  console.log(tArr)
 
   return tArr.join("");
 }
@@ -218,9 +204,10 @@ function fillRows(tGrid) {
     }
     // console.log(tS);
     tS2 = fillDouble(tS);
+    tS3 = fillTriple(tS2);
     // console.log(tS2);
     for (var j in tGrid[i]) {
-      tGrid[i][j].value = tS2[j];
+      tGrid[i][j].value = tS3[j];
     }
   }
 }
