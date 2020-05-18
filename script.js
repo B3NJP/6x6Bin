@@ -212,6 +212,24 @@ function fillRows(tGrid) {
   }
 }
 
+function fillCols(tGrid) {
+  for (var i in tGrid[0]) {
+    tS = "";
+    for (var j in tGrid) {
+      tS += tGrid[j][i].value;
+      if (tGrid[j][i].value == "") {
+        tS += " ";
+      }
+    }
+    tS2 = fillDouble(tS);
+    tS3 = fillTriple(tS2);
+    // console.log(tS2);
+    for (var j in tGrid) {
+      tGrid[j][i].value = tS3[j];
+    }
+  }
+}
+
 initialNumbers();
 
 // Solve(grid);
