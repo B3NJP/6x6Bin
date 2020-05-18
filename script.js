@@ -52,22 +52,50 @@ function TestBin(strIN) {
   var cols = [];
   for (var i=0;i<6;i++) {cols.push([])}
   for (var i=0;i<6;i++) {
-    rows.push([arrIN.slice(i*6,i*6+6)]);
+    rows.push(arrIN.slice(i*6,i*6+6));
     for (var j=0;j<6;j++) {
-      cols[j].push(arrIN[j*6+i]);
+      cols[i].push(arrIN[j*6+i]);
+      // console.log(arrIN[j*6+i])
     }
   }
-  console.log(rows);
-  console.log(cols);
-  for (var i in rows) {
-    if ((rows[i].match(/0/g) || []).length != 3) {
+  // console.log(rows.length);
+  // console.log(cols);
+  // console.log(arrIN);
+  for (var i=0;i<rows.length;i++) {
+    // console.log(i);
+    if ((rows[i].join('').match(/0/g) || []).length != 3) {
       return false;
     }
-
-    if ((cols[i].match(/0/g) || []).length != 3) {
+    if ((cols[i].join('').match(/0/g) || []).length != 3) {
       return false;
+    }
+    // console.log(cols[i]);
+    for (var j in rows[i].join('').split('0')) {
+      if (rows[i].join('').split('0')[j].length > 2) {
+        return false;
+      }
+    }
+    for (var j in rows[i].join('').split('1')) {
+      if (rows[i].join('').split('1')[j].length > 2) {
+        return false;
+      }
+    }
+    for (var j in cols[i].join('').split('0')) {
+      if (cols[i].join('').split('0')[j].length > 2) {
+        return false;
+      }
+    }
+    for (var j in cols[i].join('').split('1')) {
+      if (cols[i].join('').split('1')[j].length > 2) {
+        return false;
+      }
+      // console.log(j);
+      // console.log(j.length);
+      // console.log(cols[i]);
+      // console.log(cols[i].join('').split('1'));
     }
   }
+  return true;
 }
 
 function Solve(tGrid) {
@@ -94,15 +122,26 @@ function Solve(tGrid) {
     for (var j=0; j<tLen; j++) {
       tStr = tStr.replace("2", tAns[j] || "0");
     }
-    if (tAns == "1111111111111111111") {
-      console.log(tAns);
-      console.log(tStr);
-      TestBin(tStr);
+    // if (tAns == "1101110101100100010") {
+    //   console.log(tAns);
+    //   console.log(tStr);
+    //   console.log(TestBin(tStr))
+    //   break
+    // }
+    // if (i>1000) {break;}
+    if (TestBin(tStr)) {
+      for (var j=0; j<6; j++) {
+        for (var k=0; k<6; k++) {
+          grid[j][k].value = tStr[j*6+k];
+        }
+      }
+      console.log(tStr)
+      console.log(tAns)
+      return true;
     }
   }
-
 }
 
 initialNumbers();
 
-Solve(grid);
+// Solve(grid);
