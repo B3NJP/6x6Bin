@@ -219,6 +219,9 @@ function fillRows(tGrid) {
     // console.log(tS2);
     for (var j in tGrid[i]) {
       tGrid[i][j].value = tS4[j];
+      if (tS4[j] == " ") {
+        tGrid[i][j].value = "";
+      }
     }
   }
 }
@@ -238,7 +241,22 @@ function fillCols(tGrid) {
     // console.log(tS2);
     for (var j in tGrid) {
       tGrid[j][i].value = tS4[j];
+      if (tS4[j] == " ") {
+        tGrid[j][i].value = "";
+      }
     }
+  }
+}
+
+function SolveV2(tGrid) {
+  function checkGrid(tGrid) {
+    var tStr = "";
+    for (var i in tGrid) {
+      for (var j in tGrid[i]) {
+        tStr += tGrid[i][j].value;
+      }
+    }
+    return tStr.match(/ /);
   }
 }
 
