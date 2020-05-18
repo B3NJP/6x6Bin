@@ -174,6 +174,38 @@ function fillDouble(tStr) {
   return tArr.join("");
 }
 
+function fillTriple(tStr) {
+  var tArr = [];
+  for (var i in tStr) {
+    tArr.push(tStr[i]);
+  }
+  var x = tStr.search("00");
+  // console.log(tStr);
+  // console.log(x);
+  if (x >= 0) {
+    if (x > 0) {
+      tArr[x-1] = "1";
+    }
+    if (x < 4) {
+      tArr[x+2] = "1";
+    }
+  }
+
+  x = tStr.search("11");
+  if (x >= 0) {
+    if (x > 0) {
+      tArr[x-1] = "0";
+    }
+    if (x < 4) {
+      tArr[x+2] = "0";
+    }
+  }
+  // console.log(tStr);
+  console.log(tArr)
+
+  return tArr.join("");
+}
+
 function fillRows(tGrid) {
   for (var i in tGrid) {
     tS = "";
