@@ -193,7 +193,13 @@ function fillTriple(tStr) {
 }
 
 function fillMax(tStr) {
-
+  if ((tStr.match(/0/g) || []).length > 2) {
+    tStr = tStr.replace(/ /g, "1");
+  }
+  if ((tStr.match(/1/g) || []).length > 2) {
+    tStr = tStr.replace(/ /g, "0");
+  }
+  return tStr;
 }
 
 function fillRows(tGrid) {
@@ -209,9 +215,10 @@ function fillRows(tGrid) {
     // console.log(tS);
     tS2 = fillDouble(tS);
     tS3 = fillTriple(tS2);
+    tS4 = fillMax(tS3)
     // console.log(tS2);
     for (var j in tGrid[i]) {
-      tGrid[i][j].value = tS3[j];
+      tGrid[i][j].value = tS4[j];
     }
   }
 }
