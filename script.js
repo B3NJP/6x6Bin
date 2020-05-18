@@ -192,6 +192,10 @@ function fillTriple(tStr) {
   return tArr.join("");
 }
 
+function fillMax(tStr) {
+
+}
+
 function fillRows(tGrid) {
   for (var i in tGrid) {
     tS = "";
