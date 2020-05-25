@@ -12,3 +12,20 @@
   border-collapse: collapse;
   padding: 0;
 }
+
+.button {
+  border-style: solid;
+  cursor: pointer;
+  font-size: 20px;
+  width: 10%;
+  background-color: black;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  font-family: serif;
+}
+
+.button:hover {
+  background-color: white;
+  color: black;
+}
