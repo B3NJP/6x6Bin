@@ -1,4 +1,12 @@
 var grid = []
+var testGame = [
+  [1,"",0,"",0,0],
+  ["",1,"",0,0,""],
+  ["","","","","",0],
+  [0,"","",1,"",""],
+  [1,0,"",1,1,""],
+  ["",0,"","",1,1]
+]
 
 for (var i=0; i<6; i++) {
   grid.push([]);
@@ -44,6 +52,39 @@ function initialNumbers() {
   document.getElementById('F3').value = "";
   document.getElementById('F4').value = 1;
   document.getElementById('F5').value = 1;
+}
+
+var G00 = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+var G01 = [1, null, 0, null, 0, 0, null, 1, null, 0, 0, null, null, null, null, null, null, 0, 0, null, null, 1, null, null, 1, 0, null, 1, 1, null, null, 0, null, null, 1, 1];
+var G02 = [null, null, null, null, null, null, null, 1, null, null, null, 1, null, 1, null, 1, null, null, null, null, 0, null, null, 1, null, 1, null, null, null, null, null, null, null, 0, 0, null];
+var G03 = [null, 1, null, null, null, null, null, null, null, 0, null, 0, null, 0, null, 0, null, null, 1, null, null, null, 1, null, null, null, null, null, 0, null, 0, null, null, null, null, null];
+var G04 = [0, null, null, 1, null, null, null, 0, null, null, null, 1, null, null, 1, 1, null, null, null, null, null, null, 1, 1, null, null, null, null, null, 0, 0, null, 1, null, 1, null];
+var G05 = [null, null, null, null, null, null, null, 1, null, 1, null, 1, null, null, 0, 0, null, null, 0, null, null, null, null, null, null, null, null, null, 1, 1, null, null, 0, null, 0, null];
+var G06 = [null, null, null, null, null, 0, null, 1, null, null, 1, null, null, null, null, 0, null, null, null, null, 1, null, null, null, null, null, 1, null, null, null, null, 0, null, null, 1, null];
+var G07 = [1, null, 1, null, null, 1, null, null, null, 1, null, null, 0, null, null, 1, 0, null, null, null, 1, null, null, null, null, 1, null, null, null, null, 1, null, null, 1, 1, null];
+var G08 = [1, 1, null, null, null, null, 1, null, null, 1, null, null, null, null, null, null, 0, null, 0, null, 0, null, null, null, null, null, null, null, null, null, null, null, 0, null, 0, null];
+var G09 = [null, null, 0, 0, null, 0, null, null, null, null, null, null, null, 1, 1, null, null, null, null, null, null, null, 0, 0, null, null, 1, null, 0, null, null, null, null, null, null, null];
+var G10 = [null, null, null, null, null, null, null, 1, null, null, null, null, null, null, 0, null, 1, 1, null, null, 0, null, null, null, null, 0, null, null, 1, null, null, null, null, null, null, null];
+var G11 = [null, 1, null, 1, null, 1, null, null, null, null, null, null, 0, 0, null, null, null, null, null, null, null, null, 1, null, 0, null, 1, 0, null, null, null, 1, null, null, null, null];
+var G12 = [0, null, null, null, null, null, null, 1, 1, null, null, null, null, null, 1, null, null, null, null, null, null, 0, null, null, 0, null, null, 1, null, null, null, null, null, null, null, null];
+var G13 = [null, null, null, 1, null, null, null, null, null, null, null, 0, null, null, null, null, 0, 0, null, null, null, null, 1, null, 1, null, null, null, null, null, null, 0, null, 0, null, 0];
+
+function ConvertLongToArr(inLong) {
+  var tArr = [[],[],[],[],[],[]]
+  for (var i=0;i<6;i++) {
+    for (var j=0;j<6;j++) {
+      tArr[i].push(inLong[i*6+j])
+    }
+  }
+  return tArr
+}
+
+function fillGame(tGrid, inGrid) {
+  for (var i in inGrid) {
+    for (var j in inGrid[i]) {
+      tGrid[i][j].value = inGrid[i][j]
+    }
+  }
 }
 
 function TestBin(strIN) {
@@ -112,9 +153,9 @@ function Solve(tGrid) {
       }
     }
   }
-  console.log(tGridStr);
+  // console.log(tGridStr);
   tLen = (tGridStr.match(/2/g) || []).length;
-  console.log(tLen)
+  // console.log(tLen)
   tStr = ""
   for (var i=0; i<Math.pow(2,tLen); i++) {
     tStr = tGridStr;
@@ -135,8 +176,8 @@ function Solve(tGrid) {
           grid[j][k].value = tStr[j*6+k];
         }
       }
-      console.log(tStr)
-      console.log(tAns)
+      // console.log(tStr)
+      // console.log(tAns)
       return true;
     }
   }
@@ -169,7 +210,7 @@ function fillDouble(tStr) {
     }
   }
   // console.log(tStr);
-  console.log(tArr)
+  // console.log(tArr)
 
   return tArr.join("");
 }
@@ -250,8 +291,18 @@ function fillCols(tGrid) {
   return tGrid;
 }
 
+function ConvertToBase(tGrid) {
+  var tArr = [[],[],[],[],[],[]];
+  for (var i in tGrid) {
+    for (var j in tGrid[i]) {
+      tArr[i][j] = tGrid[i][j].value;
+    }
+  }
+  return tArr;
+}
+
 function SolveV2(tGrid) {
-  console.log("Test2");
+  // console.log("Test2");
   function checkGrid(tGrid) {
     var tStr = "";
     for (var i in tGrid) {
@@ -263,14 +314,30 @@ function SolveV2(tGrid) {
     }
     return true;
   }
-  console.log("Test3");
+  // console.log("Test3");
   while (!checkGrid(tGrid)) {
+    var last = ConvertToBase(tGrid);
     tGrid = fillRows(tGrid);
     tGrid = fillCols(tGrid);
-    console.log(tGrid)
+    // console.log(tGrid);
+    console.log(last);
+    if (JSON.stringify(ConvertToBase(tGrid)) == JSON.stringify(last)) {
+      break;
+    }
   }
 }
 
-initialNumbers();
+function HelpBox() {
+  document.getElementById('helpbox').style.display = (document.getElementById('helpbox').style.display == 'block') ? 'none' : 'block';
+}
 
+// initialNumbers();
+fillGame(grid,ConvertLongToArr(G00));
 // Solve(grid);
+
+var rot = 0;
+titleColourSwitch = setInterval(function(){
+  document.getElementById('mainHead').style.color = document.getElementById('mainHead').style.color == 'blue' ? 'red' : 'blue';
+document.getElementById('mainHead').style.transform = 'rotate('+rot+'deg)'
+rot += 5;
+}, 200);

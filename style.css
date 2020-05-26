@@ -15,6 +15,7 @@
 
 .button {
   border-style: solid;
+  border-color: black;
   cursor: pointer;
   font-size: 20px;
   width: 10%;
@@ -28,4 +29,13 @@
 .button:hover {
   background-color: white;
   color: black;
+}
+
+#help {
+  cursor: help;
+}
+
+#helpbox {
+  display: none;
+  background-color: lightgreen;
 }
