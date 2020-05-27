@@ -336,8 +336,14 @@ fillGame(grid,ConvertLongToArr(G00));
 // Solve(grid);
 
 var rot = 0;
-titleColourSwitch = setInterval(function(){
-  document.getElementById('mainHead').style.color = document.getElementById('mainHead').style.color == 'blue' ? 'red' : 'blue';
-document.getElementById('mainHead').style.transform = 'rotate('+rot+'deg)'
-rot += 5;
-}, 200);
+
+document.onkeydown = function (e) {
+  e = e || window.event;
+  if (e.keyCode == 191) {
+    titleColourSwitch = setInterval(function(){
+      document.getElementById('mainHead').style.color = document.getElementById('mainHead').style.color == 'blue' ? 'red' : 'blue';
+    document.getElementById('mainHead').style.transform = 'rotate('+rot+'deg)'
+    rot += 5;
+    }, 200);
+  }
+}
